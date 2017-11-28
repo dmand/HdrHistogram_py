@@ -4,8 +4,7 @@ environment:
     - PYTHON: "C:\\Python35"
 
 install:
-  # We need wheel installed to build wheels
-  - "%PYTHON%\\python.exe -m pip install wheel"
+  - "%PYTHON%\\python.exe -m pip install --upgrade wheel setuptools"
 
 build: off
 
@@ -16,5 +15,4 @@ after_test:
   - "build.cmd %PYTHON%\\python.exe setup.py build"
 
 artifacts:
-  # bdist_wheel puts your built wheel in the dist directory
   - path: dist\*
