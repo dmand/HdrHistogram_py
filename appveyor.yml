@@ -7,14 +7,16 @@ environment:
 
 install:
   - "%PYTHON%\\python.exe -m pip install --upgrade wheel setuptools tox"
+  - "%PYTHON%\\python.exe -m pip install -r requirements.txt"
+  - "%PYTHON%\\python.exe -m pip install -r test-requirements.txt"
 
 build: off
 
 test_script:
-  - "%PYTHON%\\python.exe -m tox"
+  - "%PYTHON%\\python.exe -m pytest --verbose"
 
 after_test:
-  - "build.cmd %PYTHON%\\python.exe setup.py build"
+  - "build.cmd %PYTHON%\\python.exe setup.py build sdist"
 
 artifacts:
   - path: dist\*
