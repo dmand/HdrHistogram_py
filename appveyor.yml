@@ -1,6 +1,9 @@
 environment:
   matrix:
     - PYTHON: "C:\\Python27"
+      TOXENV: py27
+    - PYTHON: "C:\\Python35"
+      TOXENV: py35
 
 install:
   - "%PYTHON%\\python.exe -m pip install --upgrade wheel setuptools tox"
@@ -8,7 +11,7 @@ install:
 build: off
 
 test_script:
-  - "%PYTHON%\\python.exe -m tox -e py27"
+  - "%PYTHON%\\python.exe -m tox"
 
 after_test:
   - "build.cmd %PYTHON%\\python.exe setup.py build"
