@@ -2,8 +2,10 @@ environment:
   matrix:
     - PYTHON: "C:\\Python27"
       TOXENV: py27
+      platform: x64
     - PYTHON: "C:\\Python35"
       TOXENV: py3
+      platform: x64
 
 install:
   - "%PYTHON%\\python.exe -m pip install --upgrade wheel setuptools tox"
