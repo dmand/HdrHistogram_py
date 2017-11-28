@@ -9,11 +9,12 @@ install:
   - "%PYTHON%\\python.exe -m pip install --upgrade wheel setuptools tox"
   - "%PYTHON%\\python.exe -m pip install -r requirements.txt"
   - "%PYTHON%\\python.exe -m pip install -r test-requirements.txt"
+  - "%PYTHON%\\python.exe setup.py build sdist install"
 
 build: off
 
 test_script:
-  - "%PYTHON%\\python.exe -m pytest --verbose"
+  - "%PYTHON%\\python.exe -m pytest --verbose --exitfirst"
 
 after_test:
   - "build.cmd %PYTHON%\\python.exe setup.py build sdist"
