@@ -22,6 +22,7 @@ limitations under the License.
 #include "python-codec.h"
 #include <stdlib.h>
 #include <limits.h>
+#include <stdio.h>
 
 #ifdef _MSC_VER
 typedef __int8 int8_t;
@@ -280,6 +281,8 @@ static PyObject *py_hdr_decode(PyObject *self, PyObject *args) {
     int64_t min_nonzero_index = -1;
     int64_t max_nonzero_index = 0;
 
+    printf("Decoding started\n");
+
     if (!PyArg_ParseTuple(args, "s#ilii", &src, &src_len,
                           &read_index,
                           &vdst, &max_index,
@@ -364,6 +367,7 @@ static PyObject *py_hdr_decode(PyObject *self, PyObject *args) {
             }
         }
     }
+    printf("Decoding ended\n");
     return Py_BuildValue("{s:i,s:i,s:i}",
                         "total", total_count,
                         "min_nonzero_index", min_nonzero_index,
